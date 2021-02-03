@@ -1,6 +1,13 @@
 package se.lexicon;
 
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import se.lexicon.data.DataStorage;
+import se.lexicon.model.Person;
+
+import java.util.List;
+import java.util.function.Predicate;
+
+import static se.lexicon.model.Gender.FEMALE;
 
 public class Exercises {
 
@@ -11,7 +18,9 @@ public class Exercises {
     */
     public static void exercise1(String message){
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> firstNameCondition = person -> person.getFirstName().equalsIgnoreCase("Erik");
+        List<Person> personsWithErikName=storage.findMany(firstNameCondition);
+        personsWithErikName.forEach(person -> System.out.println(person));
 
         System.out.println("----------------------");
     }
@@ -21,7 +30,11 @@ public class Exercises {
      */
     public static void exercise2(String message){
         System.out.println(message);
-        //Write your code here
+        System.out.println(message);
+        Predicate<Person> femaleCondition = person -> person.getGender()==FEMALE;
+        List<Person> femalePersons=storage.findMany(femaleCondition);
+        femalePersons.forEach(person -> System.out.println(person));
+
 
         System.out.println("----------------------");
     }
