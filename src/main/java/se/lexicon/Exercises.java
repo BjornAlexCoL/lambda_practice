@@ -4,6 +4,7 @@ import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import se.lexicon.data.DataStorage;
 import se.lexicon.model.Person;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -30,7 +31,6 @@ public class Exercises {
      */
     public static void exercise2(String message){
         System.out.println(message);
-        System.out.println(message);
         Predicate<Person> femaleCondition = person -> person.getGender()==FEMALE;
         List<Person> femalePersons=storage.findMany(femaleCondition);
         femalePersons.forEach(person -> System.out.println(person));
@@ -45,7 +45,9 @@ public class Exercises {
     public static void exercise3(String message){
         System.out.println(message);
         //Write your code here
-
+        Predicate<Person> bornAfterCondition = person -> person.getBirthDate().isAfter(LocalDate.parse("2000-01-01"));
+        List<Person> bornAfterPersons=storage.findMany(bornAfterCondition);
+        bornAfterPersons.forEach(person -> System.out.println(person));
         System.out.println("----------------------");
     }
 
